@@ -1,5 +1,7 @@
+import { error } from "console";
 import { HorseService } from "../services/horse.service";
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
+import { HorseSchema } from "../models/horse-schema";
 
 export class HorseController {
   constructor(private service = new HorseService()) {}
@@ -26,9 +28,13 @@ export class HorseController {
     }
   };
 
-  createHorse = async (req: Request, res: Response) => {
+  createHorse: RequestHandler = async (req: Request, res: Response) => {
     try {
-      const horse = req.body;
+      const parsedResult = HorseSchema.safeParse(req.body);
+      if (!parsedResult.success) {
+        res.status(400).json({ errors: parsedResult.error.errors });
+      }
+      const horse = parsedResult.data;
       const newHorse = await this.service.createHorse(horse);
       res.status(200).json(newHorse);
     } catch (error) {
@@ -44,7 +50,14 @@ export class HorseController {
   updateHorse = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      const horse = req.body;
+      if (!id || id === "") {
+        res.status(400).json({ message: "Horse Id is required" });
+      }
+      const parsedResult = HorseSchema.safeParse(req.body);
+      if (!parsedResult.success) {
+        res.status(400).json({ errors: parsedResult.error.errors });
+      }
+      const horse = parsedResult.data;
 
       const updatedHorse = await this.service.updateHorse(id, horse);
       res.status(200).json(updatedHorse);
@@ -60,6 +73,9 @@ export class HorseController {
   deleteHorse = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
+      if (!id || id === "") {
+        res.status(400).json({ message: "Horse Id is required" });
+      }
       res.status(204).json(await this.service.deleteHorse(id));
     } catch (error) {
       console.error("An error occurred while deleting the horse:", error);
