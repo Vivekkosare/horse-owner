@@ -5,7 +5,7 @@ const horsesCollection = db.collection("horses");
 
 export class HorseRepository {
   async getAllHorses(
-    age?: string,
+    age?: number,
     breed?: string,
     healthStatus?: string
   ): Promise<Horse[]> {

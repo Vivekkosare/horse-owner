@@ -4,7 +4,7 @@ export class HorseService {
   constructor(private repo = new HorseRepository()) {}
 
   getAllHorses = async (
-    age?: string,
+    age?: number,
     breed?: string,
     healthStatus?: string
   ) => {

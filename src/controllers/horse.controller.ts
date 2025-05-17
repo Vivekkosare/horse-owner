@@ -8,7 +8,8 @@ export class HorseController {
 
   getAllHorses = async (req: Request, res: Response) => {
     try {
-      const age = typeof req.query.age === "string" ? req.query.age : undefined;
+      const age =
+        typeof req.query.age === "string" ? Number(req.query.age) : undefined;
       const breed =
         typeof req.query.breed === "string" ? req.query.breed : undefined;
       const healthStatus =
