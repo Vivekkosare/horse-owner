@@ -1,3 +1,4 @@
+import { HealthStatusInput } from "../models/validations/health-status-schema";
 import { HorseRepository } from "../repositories/horse.repository";
 
 export class HorseService {
@@ -13,16 +14,18 @@ export class HorseService {
   };
 
   createHorse = async (horse: any) => {
-    const newHorse = await this.repo.createHorse(horse);
-    return newHorse;
+    return await this.repo.createHorse(horse);
   };
 
   updateHorse = async (id: string, horse: any) => {
-    const updatedHorse = await this.repo.updateHorse(id, horse);
-    return updatedHorse;
+    return await this.repo.updateHorse(id, horse);
   };
 
   deleteHorse = async (id: string) => {
     await this.repo.deleteHorse(id);
+  };
+
+  healthCheck = async (id: string, healthStatusInput: HealthStatusInput) => {
+    return await this.repo.healthCheck(id, healthStatusInput);
   };
 }

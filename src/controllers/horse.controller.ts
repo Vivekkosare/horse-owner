@@ -1,7 +1,8 @@
 import { error } from "console";
 import { HorseService } from "../services/horse.service";
 import { Request, RequestHandler, Response } from "express";
-import { HorseSchema } from "../models/horse-schema";
+import { HorseSchema } from "../models/validations/horse-schema";
+import { HealthStatusSchema } from "../models/validations/health-status-schema";
 
 export class HorseController {
   constructor(private service = new HorseService()) {}
@@ -34,6 +35,7 @@ export class HorseController {
       const parsedResult = HorseSchema.safeParse(req.body);
       if (!parsedResult.success) {
         res.status(400).json({ errors: parsedResult.error.errors });
+        return;
       }
       const horse = parsedResult.data;
       const newHorse = await this.service.createHorse(horse);
@@ -53,10 +55,12 @@ export class HorseController {
       const { id } = req.params;
       if (!id || id === "") {
         res.status(400).json({ message: "Horse Id is required" });
+        return;
       }
       const parsedResult = HorseSchema.safeParse(req.body);
       if (!parsedResult.success) {
         res.status(400).json({ errors: parsedResult.error.errors });
+        return;
       }
       const horse = parsedResult.data;
 
@@ -76,12 +80,39 @@ export class HorseController {
       const { id } = req.params;
       if (!id || id === "") {
         res.status(400).json({ message: "Horse Id is required" });
+        return;
       }
       res.status(204).json(await this.service.deleteHorse(id));
     } catch (error) {
       console.error("An error occurred while deleting the horse:", error);
       res.status(500).json({
         message: "Error deleting horse",
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  };
+
+  healthCheck: RequestHandler = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      if (!id || id === "") {
+        res.status(400).json({ message: "Horse Id is required" });
+        return;
+      }
+      const parsedResult = HealthStatusSchema.safeParse(req.body);
+      if (!parsedResult.success) {
+        res.status(400).json({ error: parsedResult.error.errors });
+        return;
+      }
+      const healthStatus = parsedResult.data;
+      const updatedHorse = await this.service.healthCheck(id, healthStatus);
+      res.status(200).json(updatedHorse);
+    } catch (error) {
+      console.error(
+        "An error occured while updating the health status of horse"
+      );
+      res.status(500).json({
+        message: "Error while updating healthStatus",
         error: error instanceof Error ? error.message : String(error),
       });
     }

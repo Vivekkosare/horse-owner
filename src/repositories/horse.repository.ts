@@ -1,5 +1,6 @@
 import { db } from "../config/firebase";
 import { Horse } from "../models/horse";
+import { HealthStatusInput } from "../models/validations/health-status-schema";
 
 const horsesCollection = db.collection("horses");
 
@@ -33,7 +34,20 @@ export class HorseRepository {
   }
 
   async createHorse(horse: Horse): Promise<Horse> {
+    //check if horse already exists with same properties?
+    const existingHorse = await horsesCollection
+      .where("name", "==", horse.name)
+      .where("age", "==", horse.age)
+      .where("breed", "==", horse.breed)
+      .get();
+
+    //throw error if exists
+    if (!existingHorse.empty) {
+      throw new Error("Horse already exists");
+    }
+    //create a document with random id
     const newHorseRef = horsesCollection.doc();
+    //copy data into new horse object
     const newHorse = {
       ...horse,
       id: newHorseRef.id,
@@ -75,5 +89,29 @@ export class HorseRepository {
       throw new Error("Horse not found");
     }
     await horseRef.delete();
+  }
+
+  async healthCheck(
+    id: string,
+    healthStatusInput: HealthStatusInput
+  ): Promise<Horse> {
+    const horseRef = horsesCollection.doc(id);
+
+    //get horse snap and check if it exists
+    const horseSnap = await horseRef.get();
+    if (!horseSnap) {
+      throw new Error("Horse not found");
+    }
+
+    //When found, patch update the healthStatus and updatedAt field
+    await horseRef.update({
+      healthStatus: healthStatusInput.healthStatus,
+      updatedAt: new Date(),
+    });
+
+    //get updated horse and return as response
+    const updatedHorseSnap = await horseRef.get();
+    const updatedHorse = updatedHorseSnap.data() as Horse;
+    return { ...updatedHorse, id: updatedHorseSnap.id };
   }
 }
