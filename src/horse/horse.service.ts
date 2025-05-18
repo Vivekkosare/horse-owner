@@ -1,5 +1,5 @@
-import { HealthStatusInput } from "../models/validations/health-status-schema";
-import { HorseRepository } from "../repositories/horse.repository";
+import { HealthStatusInput } from "./models/validations/health-status-schema";
+import { HorseRepository } from "./horse.repository";
 
 export class HorseService {
   constructor(private repo = new HorseRepository()) {}

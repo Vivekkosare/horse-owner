@@ -1,8 +1,9 @@
 import { db } from "../config/firebase";
-import { Horse } from "../models/horse";
-import { HealthStatusInput } from "../models/validations/health-status-schema";
+import { Horse } from "./models/horse";
+import { HealthStatusInput } from "./models/validations/health-status-schema";
 
 const horsesCollection = db.collection("horses");
+const ownersCollection = db.collection("owners");
 
 export class HorseRepository {
   async getAllHorses(
@@ -16,10 +17,14 @@ export class HorseRepository {
       query = query.where("age", "==", age);
     }
     if (breed) {
-      query = query.where("breed", "==", breed);
+      query = query
+        .where("breed", ">=", breed)
+        .where("breed", "<=", breed + "\uf8ff");
     }
     if (healthStatus) {
-      query = query.where("healthStatus", "==", healthStatus);
+      query = query
+        .where("healthStatus", ">=", healthStatus)
+        .where("healthStatus", "<=", healthStatus + "\uf8ff");
     }
 
     const snapshot = await query.get();
@@ -34,11 +39,18 @@ export class HorseRepository {
   }
 
   async createHorse(horse: Horse): Promise<Horse> {
+    // Check if the owner exists in the owners collection for this horse
+    const owner = await ownersCollection.doc(horse.owner).get();
+    if (!owner.exists) {
+      throw new Error("Owner not found for this horse");
+    }
+
     //check if horse already exists with same properties?
     const existingHorse = await horsesCollection
       .where("name", "==", horse.name)
       .where("age", "==", horse.age)
       .where("breed", "==", horse.breed)
+      .where("owner", "==", horse.owner)
       .get();
 
     //throw error if exists
@@ -61,6 +73,17 @@ export class HorseRepository {
   async updateHorse(id: string, horse: Horse): Promise<Horse> {
     // Create a reference to the horse document in the database based on id
     const horseRef = horsesCollection.doc(id);
+
+    // Check if the horse exists in the database
+    const horseSnap = await horseRef.get();
+    if (!horseSnap.exists) {
+      throw new Error("Horse not found");
+    }
+
+    const ownerSnap = await ownersCollection.doc(horse.owner).get();
+    if (!ownerSnap.exists) {
+      throw new Error("Owner not found for this horse");
+    }
 
     // Exclude the 'id' property from the update object
     // and store the rest of the data from the horse object into horseData

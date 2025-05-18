@@ -4,6 +4,7 @@ export interface Horse {
   age: number;
   breed: string;
   healthStatus: string;
+  owner: string;
   createdAt: Date;
   updatedAt: Date | null;
 }

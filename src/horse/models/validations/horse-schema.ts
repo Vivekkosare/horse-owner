@@ -9,4 +9,5 @@ export const HorseSchema = z.object({
       message: "Health status must be Healthy, Injured, Recovering or Unknown",
     }),
   }),
+  owner: z.string().min(1, "Owner is required"),
 });

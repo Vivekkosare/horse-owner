@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { HorseController } from "../controllers/horse.controller";
+import { HorseController } from "./horse.controller";
 
 const router = Router();
 const horseController = new HorseController();

@@ -1,8 +1,8 @@
 import { error } from "console";
-import { HorseService } from "../services/horse.service";
+import { HorseService } from "./horse.service";
 import { Request, RequestHandler, Response } from "express";
-import { HorseSchema } from "../models/validations/horse-schema";
-import { HealthStatusSchema } from "../models/validations/health-status-schema";
+import { HorseSchema } from "./models/validations/horse-schema";
+import { HealthStatusSchema } from "./models/validations/health-status-schema";
 
 export class HorseController {
   constructor(private service = new HorseService()) {}
