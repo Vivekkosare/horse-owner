@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { HorseController } from "./horse.controller";
-import authorize from "../middlewares/rbac";
-import type { Role } from "../middlewares/rbac";
+import authorize from "../../middlewares/rbac";
+import type { Role } from "../../middlewares/rbac";
 
 //define the roles
 const adminRole: Role[] = ["admin"];

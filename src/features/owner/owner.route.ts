@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { OwnerController } from "./owner.controller";
-import authorize from "../middlewares/rbac";
-import type { Role } from "../middlewares/rbac";
+import authorize from "../../middlewares/rbac";
+import type { Role } from "../../middlewares/rbac";
 
 const router = Router();
 const ownerController = new OwnerController();

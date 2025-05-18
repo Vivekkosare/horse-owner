@@ -1,6 +1,6 @@
 import express from "express";
-import horseRoutes from "./horse/horse.route";
-import ownerRoutes from "./owner/owner.route";
+import horseRoutes from "./features/horse/horse.route";
+import ownerRoutes from "./features/owner/owner.route";
 import dotenv from "dotenv";
 
 dotenv.config();

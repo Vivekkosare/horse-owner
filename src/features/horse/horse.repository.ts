@@ -1,4 +1,4 @@
-import { db } from "../config/firebase";
+import { db } from "../../config/firebase";
 import { Horse } from "./models/horse";
 import { HealthStatusInput } from "./models/validations/health-status-schema";
 

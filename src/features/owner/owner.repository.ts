@@ -1,5 +1,5 @@
 import { error } from "console";
-import { db } from "../config/firebase";
+import { db } from "../../config/firebase";
 import { Owner } from "./models/owner";
 
 const ownersCollection = db.collection("owners");
