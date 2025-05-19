@@ -78,20 +78,7 @@ FIREBASE_PRIVATE_KEY=your-private-key
 ## 📂 Project Structure
 
 ```
-horse-api/
-├── src/
-│   ├── app.ts             # Entry point
-│   ├── routes/            # Express routes
-│   ├── controllers/       # Business logic
-│   ├── services/          # Reusable services
-│   ├── models/            # Data models/interfaces
-│   └── validators/        # Zod schemas
-├── tests/
-│   ├── unit/              # Unit tests
-│   └── integration/       # Integration tests
-├── .env                   # Environment configuration
-├── package.json
-└── tsconfig.json
+![API Diagram](./assets/api-structure.png)
 ```
 
 ---
