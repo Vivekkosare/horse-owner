@@ -111,6 +111,30 @@ npm run test:integration
 
 ---
 
+---
+
+## 🐴 API Endpoints
+
+Base URL: `http://localhost:3000/api/v1`
+
+### Horses
+
+- `GET    /api/v1/horses` — Get all horses
+- `POST   /api/v1/horses` — Create a new horse
+- `PUT    /api/v1/horses/:id` — Update a horse by ID
+- `DELETE /api/v1/horses/:id` — Delete a horse by ID
+- `PATCH  /api/v1/horses/:id/health` — Update health status of a horse
+
+### Owners
+
+- `GET    /api/v1/owners` — Get all owners
+- `POST   /api/v1/owners` — Create a new owner
+- `GET    /api/v1/owners/:id` — Get an owner by ID
+- `PUT    /api/v1/owners/:id` — Update an owner by ID
+- `DELETE /api/v1/owners/:id` — Delete an owner by ID
+
+---
+
 ## 📬 API Testing with Postman
 
 A ready-to-use Postman collection is provided to help you explore and test the API endpoints.
