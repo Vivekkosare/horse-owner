@@ -77,9 +77,7 @@ FIREBASE_PRIVATE_KEY=your-private-key
 
 ## 📂 Project Structure
 
-```
 ![API Diagram](./assets/api-structure.png)
-```
 
 ---
 
