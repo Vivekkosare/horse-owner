@@ -35,7 +35,7 @@ A TypeScript-based RESTful API for managing horse owners, built with Express and
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/horse-api.git
+git clone https://github.com/Vivekkosare/horse-owner.git
 cd horse-api
 ```
 
@@ -77,7 +77,7 @@ FIREBASE_PRIVATE_KEY=your-private-key
 
 ## 📂 Project Structure
 
-<img src="https://github.com/Vivekkosare/horse-owner/blob/main/assets/api_structure.png" alt="API Diagram" width="200" height="600"/>
+<img src="https://github.com/Vivekkosare/horse-owner/blob/main/assets/api_structure.png" alt="API Diagram" width="350" height="600"/>
 
 ---
 
@@ -123,8 +123,8 @@ This project is licensed under the [ISC License](https://opensource.org/licenses
 
 ## 👤 Author
 
-**[Your Name]**  
-_Feel free to update this section with your name, GitHub link, or contact info._
+**[Vivek Kosare]**  
+\_
 
 ---
 
