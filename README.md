@@ -131,12 +131,12 @@ Base URL: `http://localhost:3000/api/v1`
 - `PUT    /api/v1/owners/:id` — Update an owner by ID
 - `DELETE /api/v1/owners/:id` — Delete an owner by ID
 
-Two roles are needed to access these end points: admin and vet
+Two roles are needed to access these end points: admin and vet.
 These roles needs to be passed to the endpoints through header requests
-x-user-role: vet OR x-user-role: admin
+`x-user-role: vet` OR `x-user-role: admin`
 
-admin: Can access all endpoints
-vet: Can access only GET requests and PATCH request on horse endpoint to update the health status
+`admin`: Can access all endpoints
+`vet`: Can access only `GET` requests and `PATCH` request on horse endpoint to update the health status
 
 ---
 
