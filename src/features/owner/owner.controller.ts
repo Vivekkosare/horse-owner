@@ -55,7 +55,7 @@ export class OwnerController {
       }
       const owner = parsedResult.data;
       const newOwner = await this.ownerService.createOwner(owner);
-      res.status(200).json(newOwner);
+      res.status(201).json(newOwner);
     } catch (error) {
       console.log("An error occured while adding owner: ", error);
       res.status(500).json({

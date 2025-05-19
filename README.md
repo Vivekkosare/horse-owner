@@ -115,6 +115,20 @@ npm run test:integration
 
 ---
 
+## 📬 API Testing with Postman
+
+A ready-to-use Postman collection is provided to help you explore and test the API endpoints.
+
+- **Location:** [`postman_collection/HorseOwners.postman_collection.json`](./postman_collection/HorseOwners.postman_collection.json)
+
+### How to use
+
+1. Open Postman.
+2. Click **Import** and select the file at `postman_collection/HorseOwners.postman_collection.json`.
+3. Use the included requests to interact with the API.
+
+---
+
 ## 📜 License
 
 This project is licensed under the [ISC License](https://opensource.org/licenses/ISC).

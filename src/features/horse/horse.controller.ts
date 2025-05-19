@@ -39,7 +39,7 @@ export class HorseController {
       }
       const horse = parsedResult.data;
       const newHorse = await this.service.createHorse(horse);
-      res.status(200).json(newHorse);
+      res.status(201).json(newHorse);
     } catch (error) {
       console.error("An error occurred while creating the horse:", error);
 

@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "d753af1d-9e64-4774-9966-b577aaf81cb3",
+		"name": "HorseOwners",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "44276781"
+	},
+	"item": [
+		{
+			"name": "Horses",
+			"item": [
+				{
+					"name": "Get All Horses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/v1/horses"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Horse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-user-role",
+								"value": "vet",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Blaze\",\n  \"age\": 5,\n  \"breed\": \"Morgan\",\n  \"healthStatus\": \"Unknown\",\n  \"owner\":\"5bkcNhAbSaKRZVnlHsDa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/v1/horses/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Horse",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Shadowfax\",\n  \"age\": 13,\n  \"breed\": \"Andalusian\",\n  \"healthStatus\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/v1/horses/7WbwVky4rbmldKydPiw8"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Health Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Shadowfax\",\n  \"age\": 13,\n  \"breed\": \"Andalusian\",\n  \"healthStatus\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/v1/horses/7WbwVky4rbmldKydPiw8"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Horse",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/v1/horses/fhLTEUQ4qCkMHh2cH8VI"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Owners",
+			"item": [
+				{
+					"name": "Create Owner",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update Owner",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:3000/api/v1/owners"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Owners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/v1/owners"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Owner By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/v1/owners"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
