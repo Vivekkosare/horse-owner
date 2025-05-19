@@ -77,7 +77,7 @@ FIREBASE_PRIVATE_KEY=your-private-key
 
 ## 📂 Project Structure
 
-![API Diagram](./assets/api-structure.png)
+![API Diagram](https://github.com/Vivekkosare/horse-owner/blob/main/assets/api_structure.png)
 
 ---
 
