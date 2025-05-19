@@ -1,10 +1,6 @@
-# horse-owner
-
-An API that links horses to it's owners and owners see and update horses health status
-
 # 🐴 Horse Owner API
 
-A TypeScript-based RESTful API for managing horse owners, built with Express and Firebase Admin SDK. Designed with developer experience in mind using Zod for validation and Jest for testing.
+A TypeScript-based RESTful API for managing horse owners. API that links horses to it's owners, owners can see and update horse's health status, built with Express and Firebase Admin SDK. Designed with developer experience in mind using Zod for validation and Jest for testing.
 
 ---
 
